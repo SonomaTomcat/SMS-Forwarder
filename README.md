@@ -17,12 +17,17 @@ SMS Forwarder is an Android application designed to provide message forwarding t
 
 ## Screenshots
 
+| ![Dashboard](images/Dashboard.png) | ![Permission Manager](images/PermissionManager.png) |
+| --- | --- |
+| Dashboard | Permission Manager |
 
-- ![Dashboard](images/Dashboard.png)
-- ![Permission Manager](images/PermissionManager.png)
-- ![API Manager](images/APIManager.png)
-- ![API Example](images/APIExample.png)
-- ![Settings](images/Settings.png)
+| ![API Manager](images/APIManager.png) | ![API Example](images/APIExample.png) |
+| --- | --- |
+| API Manager | API Example |
+
+| ![Settings](images/Settings.png) |  |
+| --- | --- |
+| Settings |  |
 
 ## Getting Started
 
