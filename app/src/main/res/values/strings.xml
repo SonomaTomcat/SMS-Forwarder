@@ -1,0 +1,103 @@
+<!-- res/values/strings.xml -->
+<resources>
+    <string name="app_name">Forwarder</string>
+
+    <string name="save">Save</string>
+    <string name="input_invalid">Invalid Input</string>
+
+    <!-- Permission Check -->
+    <string name="permission_title">Permissions Required</string>
+    <string name="permission_description">This app needs the following permissions to function properly:\n\n • Read and receive SMS\n • Send SMS\n\n Please allow these permissions to use all features.</string>
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="sms_permissions_needed">SMS permissions are needed to read messages.</string>
+    <string name="permissions_denied">permissions_denied</string>
+
+    <!-- Dashboard -->
+    <string name="messages_refreshed">Messages Refreshed</string>
+    <string name="pending">Pending</string>
+    <string name="checking_permissions">Checking permissions...</string>
+    <string name="load_messages">Load Messages</string>
+    <string name="refresh_messages">Refresh Messages</string>
+    <string name="found_messages">Found %1$d messages</string>
+    <string name="ready_to_read">Ready to read messages</string>
+    <string name="missing_permissions">Missing required permissions</string>
+    <string name="permissions_required">Permissions Required</string>
+
+    <!-- Dashboard Menu -->
+    <string name="settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="interface_category">Interface</string>
+    <string name="night_mode">Theme</string>
+    <string name="time_format">Date and Time Format</string>
+
+
+    <!-- API Manager -->
+    <string name="api_manager">API Manager\n</string>
+
+    <string name="api_method">Method</string>
+
+    <string name="api_add_item">Add API</string>
+    <string name="api_url_category">URL</string>
+    <string name="api_remark">Remark</string>
+    <string name="parse_url">Parse URL\n</string>
+    <string name="url_https">HTTPS</string>
+    <string name="https_summary_on">HTTPS is enabled</string>
+    <string name="https_summary_off">HTTPS is disabled</string>
+    <string name="url_host">Host</string>
+    <string name="host_invalid">Hostname must be a valid domain or IP address</string>
+    <string name="url_path">Path</string>
+    <string name="url_param">Parameters</string>
+    <string name="url_query">Query String</string>
+    <string name="url_port">Port</string>
+    <string name="port_invalid">Port must be in the range 0-65535</string>
+    <string name="default_port_dialog">Default: %1$d</string>
+    <string name="base_url">Base URL</string>
+
+
+    <string name="warning_title">Warning</string>
+    <string name="http_warning_message">
+        Using HTTP instead of HTTPS has serious security risks:\n\n
+        • Data can be intercepted by third parties (eavesdropping).\n
+        • Data can be modified in transit (tampering).\n
+        • Attackers can impersonate the server (man-in-the-middle).\n
+        • Sensitive information such as passwords or API keys may be leaked.\n\n
+        Are you sure you want to disable HTTPS?
+    </string>
+
+    <string name="tls_settings_category">TLS</string>
+    <string name="self_signed_cert">Use Self-signed Certificate</string>
+    <string name="tls_verification_method">TLS Verification Methods</string>
+    <string name="tls_none">NONE</string>
+    <string name="tls_none_warning">
+        Disabling certificate verification may allow attackers to intercept or modify data in transit.
+    </string>
+    <string name="tls_sha256">SHA256</string>
+    <string name="tls_sha256_hint">SHA256 of Your Certificate</string>
+    <string name="tls_method_certificate">TEXT</string>
+    <string name="tls_certificate_hint">TLS Certificate</string>
+    <string name="tls_sha256_helperText">
+        Use this command to generate SHA256 fingerprint:\n
+        $ openssl x509 -in /path/to/your_certificate.crt -noout -fingerprint -sha256
+    </string>
+    <string name="api_resolver">Resolver</string>
+    <string name="api_resolve_hint">IP address</string>
+    <string name="api_resolve_helperText">
+        Your request will be resolve to the specified IP address when your Host field is domain.
+    </string>
+
+    <!-- Add API-->
+    <string name="delete">Delete</string>
+    <string name="view_json">View JSON</string>
+    <string name="select_multi">Select Multiple</string>
+    <string name="delete_selected">Delete Selected</string>
+    <string name="confirm_delete_selected">Delete selected items?</string>
+    <string name="confirm_delete">Are you sure delete it?\n</string>
+    <string name="enter_url">Enter URL</string>
+    <string name="api_add">Add</string>
+
+    <string name="test_example_message">Test Example Message</string>
+    <string name="placeholders_helperText">Supports placeholders: {id}, {sender}, {content}, {timestamp}, {time}</string>
+
+
+</resources>

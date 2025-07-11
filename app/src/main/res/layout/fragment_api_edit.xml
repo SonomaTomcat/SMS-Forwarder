@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.widget.CompoundButton" />
+
+        <import type="android.view.View" />
+
+        <import type="com.example.forwarder.domain.model.VerificationMethod" />
+
+        <variable
+            name="viewModel"
+            type="com.example.forwarder.presentation.ApiViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:error="@{viewModel.remarkError}"
+                    android:hint="@string/api_remark">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={viewModel.remark}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 删除URL解析相关控件 -->
+                <!-- 删除editUrl和buttonParseUrl相关控件，只保留BaseURL输入框 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_base_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/base_url"
+                    android:error="@{viewModel.baseUrlError}">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_base_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textUri"
+                        android:text="@={viewModel.baseUrl}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- HTTP Method Selector -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/api_method"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="4dp"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                <Spinner
+                    android:id="@+id/spinner_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/http_methods"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Queries Section -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Queries"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="4dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_query_params"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_query_param"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/api_add"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Self-signed cert toggle, show when HTTPS enabled -->
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_self_signed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={viewModel.selfSignedCert}"
+                    android:text="@string/self_signed_cert"
+                    android:visibility="@{viewModel.tlsVisibility}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/api_resolver"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_resolve"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/api_resolve_hint"
+                    app:helperText="@string/api_resolve_helperText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_resolve"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textUri"
+                        android:text="@={viewModel.resolve}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- TLS method title -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/tls_verification_method"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:visibility="@{viewModel.selfSignedCert ? View.VISIBLE : View.GONE}" />
+
+                <!-- TLS method buttons, horizontal, show when self-signed enabled -->
+                <RadioGroup
+                    android:id="@+id/rg_tls_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.selfSignedCert ? View.VISIBLE : View.GONE}">
+
+                    <RadioButton
+                        android:id="@+id/rb_method_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.verificationMethod == VerificationMethod.NONE}"
+                        android:onClick="@{() -> viewModel.setTlsMethod(VerificationMethod.NONE)}"
+                        android:text="@string/tls_none" />
+
+                    <RadioButton
+                        android:id="@+id/rb_method_sha256"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.verificationMethod == VerificationMethod.SHA256}"
+                        android:onClick="@{() -> viewModel.setTlsMethod(VerificationMethod.SHA256)}"
+                        android:text="@string/tls_sha256" />
+
+                    <RadioButton
+                        android:id="@+id/rb_method_certificate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.verificationMethod == VerificationMethod.CERTIFICATE}"
+                        android:onClick="@{() -> viewModel.setTlsMethod(VerificationMethod.CERTIFICATE)}"
+                        android:text="@string/tls_method_certificate" />
+                </RadioGroup>
+
+                <!-- TLS method hint, show when verification is disabled -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/tls_none_warning"
+                    android:visibility="@{viewModel.selfSignedCert &amp;&amp; viewModel.verificationMethod == VerificationMethod.NONE ? View.VISIBLE : View.GONE}" />
+
+                <!-- credential input, show when method is SHA256 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_tls_sha256"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tls_sha256_hint"
+                    android:visibility="@{viewModel.selfSignedCert &amp;&amp; viewModel.verificationMethod == VerificationMethod.SHA256 ? View.VISIBLE : View.GONE}"
+                    app:helperText="@string/tls_sha256_helperText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_tls_sha256"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:text="@={viewModel.credential}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- credential input, show when method is CERTIFICATE -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_tls_certificate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tls_certificate_hint"
+                    android:visibility="@{viewModel.selfSignedCert &amp;&amp; viewModel.verificationMethod == VerificationMethod.CERTIFICATE ? View.VISIBLE : View.GONE}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_tls_certificate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLines="12"
+                        android:minLines="2"
+                        android:text="@={viewModel.credential}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onSaveClick()}"
+            android:text="@string/save" />
+    </FrameLayout>
+</layout>

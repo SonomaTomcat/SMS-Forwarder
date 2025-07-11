@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="http_methods">
+        <item>POST</item>
+        <item>GET</item>
+    </string-array>
+</resources>
+

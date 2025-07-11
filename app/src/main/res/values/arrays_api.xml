@@ -1,0 +1,10 @@
+<resources>
+    <string-array name="api_protocol_labels">
+        <item>HTTP</item>
+        <item>HTTPS</item>
+    </string-array>
+    <string-array name="api_protocol_values">
+        <item>http</item>
+        <item>https</item>
+    </string-array>
+</resources>

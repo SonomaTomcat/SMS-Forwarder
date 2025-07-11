@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/interface_category"
+        android:key="interface_category">
+
+        <ListPreference
+            android:key="night_mode"
+            android:title="@string/night_mode"
+            android:entries="@array/night_mode_labels"
+            android:entryValues="@array/night_mode_values"
+            android:defaultValue="1"
+            android:summary="%s" />
+
+        <ListPreference
+            android:key="time_format"
+            android:title="@string/time_format"
+            android:entries="@array/time_format_labels"
+            android:entryValues="@array/time_format_values"
+            android:defaultValue="yyyy-MM-dd HH:mm:ss z"
+            android:summary="%s" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

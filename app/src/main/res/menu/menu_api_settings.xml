@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_multi_select"
+        android:title="@string/select_multi"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:showAsAction="never" />
+</menu>
+
